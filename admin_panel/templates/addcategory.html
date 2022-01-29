@@ -1,0 +1,12 @@
+{% extends 'baseadmin.html' %}
+{% load static %}
+{% block content %}
+<form class="container" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label >Category name</label>
+      <input type="text" class="form-control" name="cat_name" placeholder="Enter Category Name">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  {% endblock content %}

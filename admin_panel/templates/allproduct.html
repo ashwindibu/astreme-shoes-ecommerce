@@ -1,0 +1,68 @@
+{% extends 'baseadmin.html' %}
+  {% load static %}
+  
+  {% block content %}
+
+  <table class="table container w-75">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col" >Id</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Price</th>
+        <!-- <th scope="col">Description</th> -->
+        <th scope="col">Stock small</th>
+        <th scope="col">Stock medium</th>
+        <th scope="col">Stock large</th>
+        <th scope="col">Images</th>
+      
+
+        <th scope="col">Category</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+        {% for i in all_pro %}
+      <tr>
+        <td scope="row" >{{i.id}}</td>
+        <td>{{i.product_name}}</td>
+        <td>{{i.product_price}}</td>
+        <!-- <td>{{i.product_description}}</td> -->
+        <td>{{i.product_stock_s}}</td>
+        <td>{{i.product_stock_m}}</td>
+        <td>{{i.product_stock_l}}</td>
+
+        {% if i.product_img_1 %}
+        <td><img  src="{{ i.product_img_1.url }}" width="30px"></td>
+        {% else %}
+        <td><img src="{% static 'empty.png' %}" width="30px"></td>
+        {% endif %}
+
+        <td>{{i.category_id.cat_name}}</td>
+
+
+        <td><a href="product_edit?id={{i.id}}"><button type="button" class="btn btn-danger">Edit</button></a></td>
+        <td>
+          <!-- {% if i.is_active == 1 %}
+            <a href="user_block?id={{i.id}}"><button type="button" class="btn btn-success">Block</button></a>
+          {% else %}
+          <a href="user_block?id={{i.id}}"><button type="button" class="btn btn-success">Unblock</button></a>
+          {% endif %} -->
+        <a href="product_delete?id={{i.id}}"><button type="button" class="btn btn-warning">Delete</button></a>
+        </td>
+
+      </tr>
+      {% endfor %}
+    </tbody>
+
+    {% if messages %}
+    {% for messages in messages %}
+        <script>
+            alert("{{messages}}");
+        </script>
+    {% endfor %}
+{% endif %}
+    
+    {% endblock content %}

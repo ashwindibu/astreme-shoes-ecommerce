@@ -1,0 +1,46 @@
+{% extends 'baseadmin.html' %}
+  {% load static %}
+  
+  {% block content %}
+
+  <a href="add_category"><button style="margin-left: 80%;"  type="button" class="btn btn-primary">Add Category</button></a>
+
+  <table class="table container">
+    <thead class="thead-dark">
+      
+      <tr>
+        <th scope="col" >Id</th>
+        <th scope="col">Category_name</th>
+        <th scope="col">Delete</th>
+        <th scope="col">View</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for i in cato %}
+      <tr>
+        <td scope="row" >{{i.id}}</td>
+        <td>{{i.cat_name}}</td>
+
+        <td>
+          <!-- {% if i.is_active == 1 %}
+            <a href="user_block?id={{i.id}}"><button type="button" class="btn btn-success">Block</button></a>
+          {% else %}
+          <a href="user_block?id={{i.id}}"><button type="button" class="btn btn-success">Unblock</button></a>
+          {% endif %} -->
+        <a href="cat_delete?id={{i.id}}"><button type="button" class="btn btn-danger">Delete</button></a>
+        </td>
+        <td><a href="cat_view?id={{i.id}}"><button type="button" class="btn btn-primary">View</button></a></td>
+
+      </tr>
+      {% endfor %}
+    </tbody>
+
+    {% if messages %}
+    {% for messages in messages %}
+        <script>
+            alert("{{messages}}");
+        </script>
+    {% endfor %}
+{% endif %}
+    
+    {% endblock content %}

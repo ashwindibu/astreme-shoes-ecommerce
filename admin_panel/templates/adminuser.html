@@ -1,0 +1,54 @@
+
+  {% extends 'baseadmin.html' %}
+  {% load static %}
+  
+  {% block content %}
+
+  <table class="table container">
+                  <form method="post" action="{% url 'searched' %}"
+                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    {% csrf_token %}
+                    <div class="input-group" style="margin-left:75%;">
+                        <input type="text" class=" bg-light " placeholder="Search for..."
+                            aria-label="Search" aria-describedby="basic-addon2" name="searched">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col" >Id</th>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for i in user %}
+      <tr>
+        <td scope="row" >{{i.id}}</td>
+        <td>{{i.firstname}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.phone}}</td>
+
+        <td>
+          {% if i.is_active == 1 %}
+            <a href="user_block?id={{i.id}}"><button type="button" class="btn btn-success">Block</button></a>
+          {% else %}
+          <a href="user_block?id={{i.id}}"><button type="button" class="btn btn-success">Unblock</button></a>
+          {% endif %}
+        <!-- <a href="user_delete?id={{i.id}}"><button type="button" class="btn btn-warning">Delete</button></a> -->
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    
+    {% endblock content %}
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>

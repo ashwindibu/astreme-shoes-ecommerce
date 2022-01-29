@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astreme Store | Sign In</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'login_register/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'login_register/css/fontawesome-all.min.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'login_register/css/iofrm-style.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'login_register/css/iofrm-theme4.css'%}">
+</head>
+<body>
+    <div class="form-body">
+        <div class="website-logo">
+            <a href="/">
+                <div class="">
+                    <img class="logo-size" src="{% static 'img/astreme_logo.png'%}" alt="">
+                </div>
+            </a>
+        </div>
+        <div class="row">
+            <div class="img-holder">
+                <div class="bg"></div>
+                <div class="info-holder">
+                    <img src="{% static 'login_register/images/graphic1.svg'%}" alt="">
+                </div>
+            </div>
+            <div class="form-holder">
+                <div class="form-content">
+                    <div class="form-items">
+                        <h3>Get more things done with Loggin platform.</h3>
+                        <p>Access to the most powerfull tool in the entire design and web industry.</p>
+                        <div class="page-links">
+                            <a href="signin" class="active">Login</a><a href="signup">Register</a>
+                        </div>
+                        <form method="post">
+                            {% csrf_token %}
+                            <input class="form-control" type="text" name="email" id="email" placeholder="E-mail Address" required>
+                            <input class="form-control" type="password" name="password" id="password" placeholder="Password" required>
+                            <div class="form-button">
+                                <button id="submit" type="submit" class="ibtn">Login</button>
+                            </div>
+                        </form>
+                        <!-- <div class="other-links">
+                            <span>Or login with</span><a href="#">Facebook</a><a href="#">Google</a><a href="#">Linkedin</a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="{% static 'login_register/js/jquery.min.js'%}"></script>
+<script src="{% static 'login_register/js/popper.min.js'%}"></script>
+<script src="{% static 'login_register/js/bootstrap.min.js'%}"></script>
+<script src="{% static 'login_register/js/main.js'%}"></script>
+{% if messages %}
+    {% for messages in messages %}
+        <script>
+            alert("{{messages}}");
+        </script>
+    {% endfor %}
+{% endif %}
+</body>
+</html>
