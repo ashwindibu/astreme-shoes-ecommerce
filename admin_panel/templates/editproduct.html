@@ -93,19 +93,19 @@ button:focus {
                         <div class="form-group col-sm-6 flex-column d-flex">
                             <input type="hidden"  value="{{i.id}}" name="id">
                              <label class="form-control-label px-3">Product name<span class="text-danger"> *</span></label>
-                             <input type="text" value="{{i.product_name}}" id="p_name" name="p_name" onblur="validate(1)"> </div>
+                             <input type="text" value="{{i.product_name}}" id="p_name" name="p_name" required onblur="validate(1)"> </div>
                         <div class="form-group col-sm-6 flex-column d-flex">
                              <label class="form-control-label px-3">price<span class="text-danger"> *</span></label>
-                              <input type="number" value="{{i.product_price}}" id="p_price" name="p_price" min="10" max="10000" onblur="validate(2)"> </div>
+                              <input type="number" value="{{i.product_price}}" id="p_price" name="p_price" min="10" max="10000" required onblur="validate(2)"> </div>
                         
                     </div>
                     <div class="row d-flex col-lg-3" >
                         <label class="form-control-label px-3">stock small<span class="text-danger"></span>
-                        <input type="number" value="{{i.product_stock_s}}" id="p_stock_s" name="p_stock_s" placeholder="Price" onblur="validate(1)">
+                        <input type="number" value="{{i.product_stock_s}}" id="p_stock_s" name="p_stock_s" required placeholder="Price" onblur="validate(1)">
                         <label class="form-control-label px-3">stock medium<span class="text-danger"></span>
-                        <input type="number" value="{{i.product_stock_m}}" id="p_stock_m" name="p_stock_m" placeholder="Price" onblur="validate(1)">
+                        <input type="number" value="{{i.product_stock_m}}" id="p_stock_m" name="p_stock_m" required placeholder="Price" onblur="validate(1)">
                         <label class="form-control-label px-3">stock large<span class="text-danger"></span>
-                        <input type="number" value="{{i.product_stock_l}}" id="p_stock_l" name="p_stock_l" placeholder="Price" onblur="validate(1)">
+                        <input type="number" value="{{i.product_stock_l}}" id="p_stock_l" name="p_stock_l" required placeholder="Price" onblur="validate(1)">
                     </div>
 
 

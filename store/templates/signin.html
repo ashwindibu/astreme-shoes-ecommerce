@@ -36,6 +36,11 @@
                         </div>
                         <form method="post">
                             {% csrf_token %}
+                            {% if messages %}
+                            {% for i in messages %}
+                            <p style="color: red;" >{{i}}</p>
+                            {% endfor %}
+                            {% endif %}
                             <input class="form-control" type="text" name="email" id="email" placeholder="E-mail Address" required>
                             <input class="form-control" type="password" name="password" id="password" placeholder="Password" required>
                             <div class="form-button">
@@ -54,12 +59,12 @@
 <script src="{% static 'login_register/js/popper.min.js'%}"></script>
 <script src="{% static 'login_register/js/bootstrap.min.js'%}"></script>
 <script src="{% static 'login_register/js/main.js'%}"></script>
-{% if messages %}
+<!-- {% if messages %}
     {% for messages in messages %}
         <script>
             alert("{{messages}}");
         </script>
     {% endfor %}
-{% endif %}
+{% endif %} -->
 </body>
 </html>

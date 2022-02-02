@@ -21,6 +21,7 @@
     <!-- Custom styles for this template-->
     <link href="{% static 'assets/css/sb-admin-2.min.css'%}" rel="stylesheet">
 
+
 </head>
 
 <body id="page-top">
@@ -301,8 +302,7 @@
                                 Activity Log
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            <a class="dropdown-item" href="adminlogout">
                                 Logout
                             </a>
                         </div>
@@ -317,15 +317,6 @@
 
             {% endblock content %}
             
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
 
         </div>
         <!-- End of Content Wrapper -->

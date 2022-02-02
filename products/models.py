@@ -20,7 +20,7 @@ class category(models.Model):
     is_available = models.IntegerField(default=True)
 
 class products(models.Model):
-    product_name = models.CharField(max_length=100)
+    product_name = models.CharField(max_length=100,null=True)
     product_price = models.FloatField(default=False)
     product_description = models.CharField(max_length=1000)
     category_id = models.ForeignKey(category, default=True, on_delete=models.CASCADE)

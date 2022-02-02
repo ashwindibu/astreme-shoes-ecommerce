@@ -9,6 +9,13 @@
     <link rel="stylesheet" type="text/css" href="{% static 'login_register/css/fontawesome-all.min.css'%}">
     <link rel="stylesheet" type="text/css" href="{% static 'login_register/css/iofrm-style.css'%}">
     <link rel="stylesheet" type="text/css" href="{% static 'login_register/css/iofrm-theme4.css'%}">
+
+      <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+      <!-- Compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+              
 </head>
 <body>
     <div class="form-body">
@@ -37,6 +44,11 @@
                         
                         <form method="post">
                             {% csrf_token %}
+                            {% if messages %}
+                            {% for i in messages %}
+                            <p style="color: red;" >{{i}}</p>
+                            {% endfor %}
+                            {% endif %}
                             <label>Firstname</label>
                             {{form.firstname}}
                             <label>Secondname</label>
@@ -53,7 +65,7 @@
                             <input class="form-control" type="number" name="phonenumber" placeholder="Mobile Number" required>
                             <input class="form-control" type="password" name="password1" placeholder="Password" required>
                             <input class="form-control" type="password" name="password2" placeholder="Password Again" required> -->
-
+                            
                             <div class="form-button">
                                 <button id="submit" type="submit" class="ibtn">Register</button>
                             </div>
@@ -70,12 +82,13 @@
 <script src="{% static 'login_register/js/popper.min.js'%}"></script>
 <script src="{% static 'login_register/js/bootstrap.min.js'%}"></script>
 <script src="{% static 'login_register/js/main.js'%}"></script>
-{% if messages %}
+<!-- {% if messages %}
     {% for messages in messages %}
         <script>
             alert("{{messages}}");
         </script>
     {% endfor %}
-{% endif %}
+{% endif %} -->
+
 </body>
 </html>

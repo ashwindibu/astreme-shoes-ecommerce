@@ -4,6 +4,7 @@ from . import views
 
 urlpatterns = [
     path('',views.adminlogin),
+    path('adminlogin',views.adminlogin,name='adminlogin'),
     path('admin_home',views.admin_home,name='admin_home'),
     path('admin_user',views.admin_user),
     path('user_block',views.user_block),
@@ -17,5 +18,6 @@ urlpatterns = [
     path('cat_delete',views.cat_delete),
     path('cat_view',views.cat_view),
     path('add_category',views.add_category),
+    path('adminlogout',views.adminlogout)
     
 ]

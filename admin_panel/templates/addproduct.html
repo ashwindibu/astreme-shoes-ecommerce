@@ -73,7 +73,7 @@ button:focus {
     outline-width: 0
 }</style>
                                 </head>
-                                <body oncontextmenu='return false' class='snippet-body'>
+                                    <!-- <body oncontextmenu='return false' class='snippet-body'> -->
                                     {% extends 'baseadmin.html' %}
                                     {% load static %}
                                     
@@ -86,22 +86,27 @@ button:focus {
             <div class="card">
                 <form class="form-card" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
+                    {% if messages %}
+                    {% for messages in messages %}
+                    <p style="color: red; background-color: rgb(247, 204, 204);" >{{messages}}</p>
+                    {% endfor %}
+                    {% endif %}
                     <div class="row justify-content-between text-left">
                         <div class="form-group col-sm-6 flex-column d-flex">
                              <label class="form-control-label px-3">Product name<span class="text-danger"> *</span></label>
-                             <input type="text" id="p_name" name="p_name" placeholder="Enter Product name" onblur="validate(1)"> </div>
+                             <input type="text" id="p_name" name="p_name" placeholder="Enter Product name" required onblur="validate(1)"> </div>
                         <div class="form-group col-sm-6 flex-column d-flex">
                              <label class="form-control-label px-3">price<span class="text-danger"> *</span></label>
-                              <input type="number" id="p_price" name="p_price" min="10" max="10000" placeholder="Price" onblur="validate(2)"> </div>
+                              <input type="number" id="p_price" name="p_price" min="10" max="10000" placeholder="Price" required onblur="validate(2)"> </div>
                         
                     </div>
                     <div class="row d-flex col-lg-3" >
                         <label class="form-control-label px-3">stock small<span class="text-danger"></span>
-                        <input type="number" id="p_stock_s" name="p_stock_s" min="1" placeholder="Price" onblur="validate(1)">
+                        <input type="number" id="p_stock_s" name="p_stock_s" min="1" required placeholder="Price" onblur="validate(1)">
                         <label class="form-control-label px-3">stock medium<span class="text-danger"></span>
-                        <input type="number" id="p_stock_m" name="p_stock_m" min="1"  placeholder="Price" onblur="validate(1)">
+                        <input type="number" id="p_stock_m" name="p_stock_m" min="1" required  placeholder="Price" onblur="validate(1)">
                         <label class="form-control-label px-3">stock large<span class="text-danger"></span>
-                        <input type="number" id="p_stock_l" name="p_stock_l" min="1"  placeholder="Price" onblur="validate(1)">
+                        <input type="number" id="p_stock_l" name="p_stock_l" min="1" required  placeholder="Price" onblur="validate(1)">
                     </div>
 
 
@@ -123,10 +128,10 @@ button:focus {
                     </div>
                     <div class="row">
                         <div class="col-md-6 pb-2 ">
-                            <input type="file" id="image1" name="image1" accept="image/*">
-                            <input type="file" id="image2" name="image2"accept="image/*">
-                            <input type="file" id="image3" name="image3" accept="image/*">
-                            <input type="file" id="image4" name="image4" accept="image/*">
+                            <input type="file" id="image1" name="image1" accept=".jpg,.png,.jepg">
+                            <input type="file" id="image2" name="image2"accept=".jpg,.png,.jepg">
+                            <input type="file" id="image3" name="image3" accept=".jpg,.png,.jepg">
+                            <input type="file" id="image4" name="image4" accept=".jpg,.png,.jepg">
 
 
                         </div>
