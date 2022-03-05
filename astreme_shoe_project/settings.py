@@ -39,6 +39,15 @@ INSTALLED_APPS = [
     'store',
     'admin_panel',
     'products',
+    'cart',
+    'orders',
+    'twilio',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
     
 ]
 
@@ -57,7 +66,7 @@ ROOT_URLCONF = 'astreme_shoe_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -65,6 +74,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
+                'store.context_processors.header_menu',
+                'cart.context_processors.counter',
             ],
         },
     },
@@ -131,11 +143,35 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media') 
 
 AUTH_USER_MODEL = 'store.Account'
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+
+LOGIN_REDIRECT_URL = 'homepage'
+LOGOUT_REDIRECT_URL = 'homepage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+ACCOUNT_SECURITY_API_KEY = "h7Ro61FSaSemSo8wg3bigE7Uvl4VXkxU"
+TWILIO_ACCOUNT_SID = "ACc22d8d97c20660bcf6c910312edfcdea"
+TWILIO_AUTH_TOKEN = "cc50472fc88d44f529014e27a79966a4"
+TWILIO_VERIFICATION_SID = "VA996775634cf4d63a13987a0d866c5e39"
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1
+SOCIALACCOUNT_QUERY_EMAIL = True
+
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = ('email')
+
+#razorpay payment
+razorpay_id = "rzp_test_Bj4V8zebAB7pRk "
+razorpay_account_id = "yFdYkdzFMA726v35zzI4PF2w"

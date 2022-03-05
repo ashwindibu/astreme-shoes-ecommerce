@@ -1,11 +1,12 @@
 {% extends 'baseadmin.html' %}
 {% load static %}
 {% block content %}
-<form class="container" method="post">
+<form class="container" method="post" enctype="multipart/form-data" >
     {% csrf_token %}
     <div class="form-group">
       <label >Category name</label>
       <input type="text" class="form-control" name="cat_name" placeholder="Enter Category Name">
+      <input type="file" class="form-control" name="cat_img"  accept=".jpg,.png,.jepg" >
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>

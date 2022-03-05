@@ -16,6 +16,7 @@ urlpatterns = [
     path('product_update',views.product_update),
     path('category_man',views.category_man),
     path('cat_delete',views.cat_delete),
+    path('cat_edit',views.cat_edit),
     path('cat_view',views.cat_view),
     path('add_category',views.add_category),
     path('adminlogout',views.adminlogout)

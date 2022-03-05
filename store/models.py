@@ -38,7 +38,7 @@ class Account(AbstractBaseUser,PermissionsMixin):
     firstname = models.CharField(max_length=50)
     secondname = models.CharField(max_length=50)
     email = models.EmailField(max_length=50,unique=True)
-    phone = models.BigIntegerField(unique=True,default=True)
+    phone = models.BigIntegerField(default=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)

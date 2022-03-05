@@ -1,0 +1,169 @@
+		{% load static %}
+        <!-- /header -->
+        <header class="version_2">
+            <div class="layer"></div><!-- Mobile menu overlay mask -->
+            <div class="main_header Sticky">
+                <div class="container">
+                    <div class="row small-gutters">
+                        <div class="col-xl-3 col-lg-3 d-lg-flex align-items-center">
+                            <div id="logo">
+                                <a href="/"><img src="{% static 'img/astreme_logo.png'%}" alt="" width="100" height="35"></a>
+                            </div>
+                        </div>
+                        <nav class="col-xl-6 col-lg-7">
+                            <a class="open_close" href="javascript:void(0);">
+                                <div class="hamburger hamburger--spin">
+                                    <div class="hamburger-box">
+                                        <div class="hamburger-inner"></div>
+                                    </div>
+                                </div>
+                            </a>
+                            <!-- Mobile menu button -->
+                            <div class="main-menu">
+                                <div id="header_menu">
+                                    <a href="/"><img src="img/astreme_logo.png" alt="" width="100" height="35"></a>
+                                    <a href="#" class="open_close" id="close_in"><i class="ti-close"></i></a>
+                                </div>
+                                <ul>
+                                    <li class="">
+                                        <a href="#" class="show-submenu">Home</a>
+                                    </li>
+                                    <li class="megamenu submenu">
+                                        <a href="javascript:void(0);" class="show-submenu-mega">categories</a>
+                                        <div class="menu-wrapper">
+                                            <div class="row small-gutters">
+                                                {% for i in catego %}
+                                                <div class="col-lg-3">
+                                                
+                                                    <h3>{{i.cat_name}}</h3>
+                                                    <ul>
+                                                        <li><a href="{% url 'collection' i.id %}">{{i.cat_name}} Shoes</a></li>
+                                                    </ul>
+                                                </div>
+                                                {% endfor %}
+                                                <!-- <div class="col-lg-3">
+                                                    <h3>WOMEN</h3>
+                                                    <ul>
+                                                        <li><a href="collection?id={{i.id}}">Women shoe</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <h3>KIDS</h3>
+                                                    <ul>
+                                                        <li><a href="collection?id={{i.id}}">Kids shoe</a></li>
+                                                    </ul>
+                                                </div> -->
+                                                <div class="col-lg-3 d-xl-block d-lg-block d-md-none d-sm-none d-none">
+                                                    <div class="banner_menu">
+                                                        <a href="#">
+                                                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="img/banner_menu.jpg" width="400" height="550" alt="" class="img-fluid lazy">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /row -->
+                                        </div>
+                                        <!-- /menu-wrapper -->
+                                    </li>
+                                    <li class="">
+                                        <a href="#" class="">Contact Us</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">about us</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--/main-menu -->
+                        </nav>
+                        <div class="col-xl-3 col-lg-2 d-lg-flex align-items-center justify-content-end text-end">
+                            <ul class="top_tools">
+                                <li>
+                                    <div class="dropdown dropdown-cart">
+                                        {% if cart_count %}
+                                        <a href="{% url 'cart_page'%}" class="cart_bt"><strong>{{cart_count}}</strong></a>
+                                        {% else %}
+                                        <a href="{% url 'cart_page'%}" class="cart_bt"><strong>0</strong></a>
+                                        {% endif %}
+
+                                        
+                                        <!-- /dropdown-cart-->
+    
+                                        <!-- <div class="dropdown-menu">
+                                            <ul>
+                                                <li>
+                                                    <a href="#">
+                                                        <figure><img src="{% static 'img/products/product_placeholder_square_small.jpg' '%}" data-src="img/products/shoes/thumb/1.jpg" alt="" width="50" height="50" class="lazy"></figure>
+                                                        <strong><span>1x Armor Air x Fear</span>$90.00</strong>
+                                                    </a>
+                                                    <a href="#" class="action"><i class="ti-trash"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <figure><img src="{% static 'img/products/product_placeholder_square_small.jpg'%}" data-src="img/products/shoes/thumb/2.jpg" alt="" width="50" height="50" class="lazy"></figure>
+                                                        <strong><span>1x Armor Okwahn II</span>$110.00</strong>
+                                                    </a>
+                                                    <a href="0" class="action"><i class="ti-trash"></i></a>
+                                                </li>
+                                            </ul>
+                                            <div class="total_drop">
+                                                <div class="clearfix"><strong>Total</strong><span>$200.00</span></div>
+                                                <a href="cart.html" class="btn_1 outline">View Cart</a><a href="checkout.html" class="btn_1">Checkout</a>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <!-- /dropdown-cart-->
+    
+                                </li>
+                                <li>
+                                    <a href="#" class="wishlist"><span>Wishlist</span></a>
+                                </li>
+    
+                                <li>
+                                    <div class="dropdown dropdown-access">
+                                        <a href="#" class="access_link"><span>Account</span></a>
+                                        <div class="dropdown-menu">
+                                            {% if user.firstname%}
+                                            <!-- <a href="signin" class="btn_1">Sign In or Sign Up</a> -->
+                                            <a href="#" class="btn_1">{{user.firstname}}</a>
+                                            {% else %}
+                                            <a href="{% url 'signin'%}" class="btn_1">Sign In or Sign Up</a>
+                                            {% endif %}
+                                            <ul>
+                                                {% if user.firstname %}
+                                                <li>
+                                                    <a href="#"><i class="ti-truck"></i>Track your Order</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="ti-package"></i>My Orders</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="ti-user"></i>My Profile</a>
+                                                </li>
+                                                
+                                                <li>
+                                                    <a href="{% url 'userlogout' %}"><i class="ti-help-alt"></i>Logout</a>
+                                                </li>
+                                                {% else %}
+
+                                                {% endif %}
+                                                <li>
+                                                    <a href="#"><i class="ti-help-alt"></i>Help and Faq</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- /dropdown-access-->
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="search_panel"><span>Search</span></a>
+                                </li>
+                            
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /row -->
+                </div>
+            </div>
+            <!-- /main_header -->
+        </header>
+        <!-- /header -->

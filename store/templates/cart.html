@@ -1,0 +1,234 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Ansonika">
+    <title>Cart | Astreme </title>
+
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
+	
+    <!-- GOOGLE WEB FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- BASE CSS -->
+    <link href="{% static 'css/bootstrap.custom.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/style.css'%}" rel="stylesheet">
+
+	<!-- SPECIFIC CSS -->
+    <link href="{% static 'css/cart.css'%}" rel="stylesheet">
+
+    <!-- YOUR CUSTOM CSS -->
+    <link href="{% static 'css/custom.css'%}" rel="stylesheet">
+
+	<style>
+		span {cursor:pointer; }
+		.number{
+			margin:0px;
+		}
+		.minus, .plus{
+			width:20px;
+			height:23px;
+			background:#f2f2f2;
+			border-radius:4px;
+			padding:0px 5px 8px 5px;
+			border:1px solid #ddd;
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+		}
+		input{
+			height:34px;
+      width: 50px;
+      text-align: center;
+      font-size: 14px;
+			border:1px solid #ddd;
+			border-radius:4px;
+      display: inline-block;
+      vertical-align: middle;
+		}
+	</style>
+
+</head>
+<body>
+
+	<div id="page">
+		{% if not cart_i %}
+		<div style="height: 21.9em;">
+			<h2 class="text-center " style="margin-top: 8em;" >Your Shopping Cart is Empty</h2>
+			<br>
+			<div class="text-center">
+				<a href="/" class="btn btn-primary" >Continue Shopping</a>
+			</div>
+		</div>
+		{% else %}
+	<main class="bg_gray">
+		<div class="container margin_30">
+		<div class="page_header">
+			<div class="breadcrumbs">
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="#">Category</a></li>
+				</ul>
+			</div>
+			<h1>Cart page</h1>
+		</div>
+		<!-- /page_header -->
+		<table class="table table-striped cart-list">
+							<thead>
+								<tr>
+									<th>
+										Product
+									</th>
+									<th>
+										Price
+									</th>
+									<th>
+										Quantity
+									</th>
+									<th>
+										Subtotal
+									</th>
+									<th>
+										
+									</th>
+								</tr>
+							</thead>
+
+
+
+
+
+							<tbody>
+								{% for cart_item in cart_i %}
+								<tr>
+									
+									<td>
+										<div class="thumb_cart">
+											<img src="{{ cart_item.product_id.product_img_1.url }}" data-src="{{ cart_item.product_id.product_img_1.url }}" class="lazy" alt="Image">
+										</div>
+										<a href="product_details?id={{ cart_item.product_id.id }}"></a><span class="item_cart">{{cart_item.product_id.product_name}}</span>
+									</td>
+									<td>
+										<strong>&#8377;{{cart_item.product_id.product_price}}</strong>
+									</td>
+									<td>
+
+
+									<div class="number">
+										<a href="{% url 'dicrement_cart' cart_item.product_id.id %}" class="minus">-</a>
+										<input type="text" value="{{cart_item.quantity}}"/>
+										<a href="{% url 'add_to_cart' cart_item.product_id.id %}" class="plus">+</a>
+									
+									</div>
+									</td>
+									<td>
+										<strong>&#8377;{{cart_item.sub_total}}</strong>
+									</td>
+									<td class="options">
+										<a href="{% url 'remove_cart' cart_item.product_id.id %}"><i class="ti-trash"></i></a>
+									</td>
+									
+								</tr>
+								{% endfor %}
+							</tbody>
+
+						</table>
+
+
+
+
+
+
+
+
+
+
+
+						<div class="row add_top_30 flex-sm-row-reverse cart_actions">
+						<div class="col-sm-4 text-end">
+							<button type="button" class="btn_1 gray">Update Cart</button>
+						</div>
+							<div class="col-sm-8">
+							<div class="apply-coupon">
+								<div class="form-group">
+									<div class="row g-2">
+										<div class="col-md-6"><input type="text" name="coupon-code" value="" placeholder="Promo code" class="form-control"></div>
+										<div class="col-md-4"><button type="button" class="btn_1 outline">Apply Coupon</button></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /cart_actions -->
+	
+		</div>
+		<!-- /container -->
+		
+		<div class="box_cart">
+			<div class="container">
+			<div class="row justify-content-end">
+				<div class="col-xl-4 col-lg-4 col-md-6">
+			<ul>
+				<li>
+					<span>Subtotal</span>&#8377;{{total}}
+				</li>
+				<li>
+					<span>Shipping</span>&#8377;{{shipping}}
+				</li>
+				<li>
+					<span>Total</span>&#8377;{{grand_total}}
+				</li>
+			</ul>
+			<a href="{% url 'checkout' %}" class="btn_1 full-width cart">Proceed to Checkout</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /box_cart -->
+		{% endif %}
+		
+	</main>
+	{% endblock content %}
+	<!--/main-->
+    <script src="{% static 'js/common_scripts.min.js'%}"></script>
+    <script src="{% static 'js/main.js'%}"></script>
+	
+	
+	
+	<script>
+		$(document).ready(function() {
+			$('.minus').click(function () {
+				var $input = $(this).parent().find('input');
+				var count = parseInt($input.val()) - 1;
+				count = count < 1 ? 1 : count;
+				$input.val(count);
+				$input.change();
+				return false;
+			});
+			$('.plus').click(function () {
+				var $input = $(this).parent().find('input');
+				$input.val(parseInt($input.val()) + 1);
+				$input.change();
+				return ;
+			});
+		});
+	</script>
+	
+
+

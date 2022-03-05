@@ -1,0 +1,293 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Ansonika">
+    <title>Checkout | Astreme</title>
+
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
+	
+    <!-- GOOGLE WEB FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- BASE CSS -->
+    <link href="{% static 'css/bootstrap.custom.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/style.css'%}" rel="stylesheet">
+
+	<!-- SPECIFIC CSS -->
+    <link href="{% static 'css/checkout.css'%}" rel="stylesheet">
+
+    <!-- YOUR CUSTOM CSS -->
+    <link href="{% static 'css/custom.css'%}" rel="stylesheet">
+
+</head>
+
+<body>
+	
+	<div id="page">
+	
+	<main class="bg_gray">
+	
+		
+	<div class="container margin_30">
+		<div class="page_header">
+			<div class="breadcrumbs">
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="{% url 'cart_page' %}">Category</a></li>
+					<li>Billing Address</li>
+				</ul>
+		</div>
+		<h1>Sign In or Create an Account</h1>
+			
+	</div>
+	<!-- /page_header -->
+			<div class="row" style="margin-left: 20%;">
+				<div class="col-lg-4 col-md-6">
+					<div class="step first">
+						<h3>1. User Info and Billing address</h3>
+
+
+
+					<!-- <ul class="nav nav-tabs" id="tab_checkout" role="tablist">
+					  <li class="nav-item">
+						<a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#tab_1" role="tab" aria-controls="tab_1" aria-selected="true">Register</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#tab_2" role="tab" aria-controls="tab_2" aria-selected="false">Login</a>
+					  </li>
+					</ul> -->
+
+
+					
+					<div class="tab-content checkout">
+						<div class="tab-pane fade show active" id="tab_1" role="tabpanel" aria-labelledby="tab_1">
+							<div class="form-group">
+								<input type="email" disabled name="email"  class="form-control" placeholder="{{order.email}}" disabled >
+							</div>
+							<div class="form-group">
+								<input type="text" name="phone" class="form-control" placeholder="{{order.phone}}" disabled >
+							</div>
+							<hr>
+							<div class="row no-gutters">
+								<div class="col-6 form-group pr-1">
+									<input type="text" name="first_name" class="form-control" placeholder="{{order.first_name}}" disabled >
+								</div>
+								<div class="col-6 form-group pl-1">
+									<input type="text" name="last_name" class="form-control" placeholder="{{order.last_name}}" disabled >
+								</div>
+							</div>
+							<!-- /row -->
+							<div class="form-group">
+								<input type="text" name="address_line_1" class="form-control"  placeholder="{{order.address_line_1}}" disabled >
+							</div>
+							<div class="row no-gutters">
+								<div class="col-6 form-group pr-1">
+									<input type="text" name="city" class="form-control" placeholder="{{order.city}}" disabled >
+								</div>
+								<div class="col-6 form-group pr-1">
+									<input type="text" name="state" class="form-control" placeholder="{{order.state}}" disabled >
+								</div>
+								<div class="col-6 form-group pl-1">
+									<input type="text" name="postal_code" class="form-control" placeholder="{{order.postal_code}}" disabled >
+								</div>
+							</div>
+							<!-- /row -->
+							<div class="row no-gutters">
+								<div class="col-md-12 form-group">
+									<div class="custom-select-form">
+										<select class="wide add_bottom_15" name="country" id="country" disabled required>
+											<option value="" selected>{{order.country}}</option>
+											<option value="Europe">Europe</option>
+											<option value="United states">United states</option>
+											<option value="Asia">Asia</option>
+											<option value="Asia">India</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<!-- /row -->
+							<div class="form-group">
+								<!-- <input type="text" class="form-control" placeholder="Telephone"> -->
+								<textarea name="order_note" rows="2" class="form-control" placeholder="{{order.order_note}}"></textarea>
+							</div>
+							<hr>
+							
+						
+						
+
+							<!-- /other_addr_c -->
+							<hr>
+						</div>
+						<!-- /tab_1 -->
+
+
+					  <div class="tab-pane fade" id="tab_2" role="tabpanel" aria-labelledby="tab_2" style="position: relative;">
+						  <a href="#0" class="social_bt facebook">Login con Facebook</a>
+						  <a href="#0" class="social_bt google">Login con Google</a>
+						  <div class="form-group">
+								<input type="email" class="form-control" placeholder="Email">
+							</div>
+							<div class="form-group">
+								<input type="password" class="form-control" placeholder="Password" name="password_in" id="password_in">
+							</div>
+						  	<div class="clearfix add_bottom_15">
+								<div class="checkboxes float-start">
+									<label class="container_check">Remember me
+										<input type="checkbox">
+										<span class="checkmark"></span>
+									</label>
+								</div>
+								<div class="float-end"><a id="forgot" href="#0">Lost Password?</a></div>
+							</div>
+							  <div id="forgot_pw">
+								<div class="form-group">
+									<input type="email" class="form-control" name="email_forgot" id="email_forgot" placeholder="Type your email">
+								</div>
+								<p>A new password will be sent shortly.</p>
+								<div class="text-center"><input type="submit" value="Reset Password" class="btn_1"></div>
+							</div>
+							<hr>
+						  	<input type="submit" class="btn_1 full-width" value="Login">
+						</div>
+						
+						
+						
+						<!-- /tab_2 -->
+					</div>
+					</div>
+					<!-- /step -->
+				</div>
+
+
+				<div class="col-lg-4 col-md-6">
+					<div class="step middle payments">
+						<h3>2. Payment and Shipping</h3>
+							<ul>
+								<li>
+									<label class="container_radio">Credit Card<a href="#0" class="info" data-bs-toggle="modal" data-bs-target="#payments_method"></a>
+										<input type="radio" name="payment" checked>
+										<span class="checkmark"></span>
+									</label>
+								</li>
+								<li>
+									<label class="container_radio">Paypal<a href="#0" class="info" data-bs-toggle="modal" data-bs-target="#payments_method"></a>
+										<input type="radio" name="payment">
+										<span class="checkmark"></span>
+									</label>
+								</li>
+								<li>
+									<label class="container_radio">Cash on delivery<a href="#0" class="info" data-bs-toggle="modal" data-bs-target="#payments_method"></a>
+										<input type="radio" name="payment">
+										<span class="checkmark"></span>
+									</label>
+								</li>
+								<li>
+									<label class="container_radio">Bank Transfer<a href="#0" class="info" data-bs-toggle="modal" data-bs-target="#payments_method"></a>
+										<input type="radio" name="payment">
+										<span class="checkmark"></span>
+									</label>
+								</li>
+							</ul>
+							<div class="payment_info d-none d-sm-block"><figure><img src="img/cards_all.svg" alt=""></figure>	<p>Sensibus reformidans interpretaris sit ne, nec errem nostrum et, te nec meliore philosophia. At vix quidam periculis. Solet tritani ad pri, no iisque definitiones sea.</p></div>
+							
+							<h6 class="pb-2">Shipping Method</h6>
+							
+						
+						<ul>
+								<li>
+									<label class="container_radio">Standard shipping<a href="#0" class="info" data-bs-toggle="modal" data-bs-target="#payments_method"></a>
+										<input type="radio" name="shipping" checked>
+										<span class="checkmark"></span>
+									</label>
+								</li>
+								<li>
+									<label class="container_radio">Express shipping<a href="#0" class="info" data-bs-toggle="modal" data-bs-target="#payments_method"></a>
+										<input type="radio" name="shipping">
+										<span class="checkmark"></span>
+									</label>
+								</li>
+								
+							</ul>
+						
+					</div>
+					
+				</div>
+
+
+				<div class="col-lg-4 col-md-6">
+					<div class="step last">
+						<h3>3. Order Summary</h3>
+					<div class="box_general summary">
+						<div style="display: inline-flex;" >
+						<h6>Product</h6><h6 style="margin-left: 150%;" >Price</h6>
+						</div>
+						<ul>
+							{% for cart_item in cart_i %}
+							<li class="clearfix"><em>{{ cart_item.product_id.product_name }}</em>  <span>&#8377;{{ cart_item.product_id.product_price }}</span></li>
+							{% endfor %}
+						</ul>
+						<ul>
+							<li class="clearfix"><em><strong>Subtotal</strong></em>  <span>&#8377;{{total}}</span></li>
+							<li class="clearfix"><em><strong>Shipping</strong></em> <span>&#8377;{{shipping}}</span></li>
+							
+						</ul>
+						<div class="total clearfix">TOTAL <span>&#8377;{{grand_total}}</span></div>
+						
+						<!-- <a href="" class="btn_1 full-width">Confirm and Pay</a> -->
+						<button type="submit" class="btn_1 full-width">Place Order</button>
+					</div>
+					<!-- /box_general -->
+					</div>
+					<!-- /step -->
+				</div>
+
+				</form>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</main>
+	<!--/main-->
+	
+
+
+
+	
+	</div>
+	<!-- page -->
+	
+	<div id="toTop"></div><!-- Back to top button -->
+	<!-- Modal Payments Method-->
+	
+	{% endblock content %}
+
+	<!-- COMMON SCRIPTS -->
+    <script src="{% static 'js/common_scripts.min.js'%}"></script>
+    <script src="{% static 'js/main.js'%}"></script>
+
+    <script>
+    	// Other address Panel
+		$('#other_addr input').on("change", function (){
+	        if(this.checked)
+	            $('#other_addr_c').fadeIn('fast');
+	        else
+	            $('#other_addr_c').fadeOut('fast');
+	    });
+	</script>
+		
+</body>
+</html>

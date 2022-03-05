@@ -10,8 +10,10 @@
       
       <tr>
         <th scope="col" >Id</th>
-        <th scope="col">Category_name</th>
+        <th scope="col">Category name</th>
+        <th scope="col">category image</th>
         <th scope="col">Delete</th>
+        <th scope="col">Edit</th>
         <th scope="col">View</th>
       </tr>
     </thead>
@@ -20,7 +22,11 @@
       <tr>
         <td scope="row" >{{i.id}}</td>
         <td>{{i.cat_name}}</td>
-
+        {% if i.category_img %}
+        <td><img  src="{{ i.category_img.url }}" width="30px"></td>
+        {% else %}
+        <td><img src="{% static 'empty.png' %}" width="30px"></td>
+        {% endif %}
         <td>
           <!-- {% if i.is_active == 1 %}
             <a href="user_block?id={{i.id}}"><button type="button" class="btn btn-success">Block</button></a>
@@ -29,6 +35,7 @@
           {% endif %} -->
         <a href="cat_delete?id={{i.id}}"><button type="button" class="btn btn-danger">Delete</button></a>
         </td>
+        <td><a href="cat_edit?id={{i.id}}"><button type="button" class="btn btn-primary">Edit</button></a></td>
         <td><a href="cat_view?id={{i.id}}"><button type="button" class="btn btn-primary">View</button></a></td>
 
       </tr>

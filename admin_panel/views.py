@@ -1,5 +1,6 @@
 import email
 from itertools import product
+from urllib import request
 from xml.parsers import expat
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
@@ -136,6 +137,17 @@ def category_man(request):
     catego = category.objects.all()
     return render(request,'category_man.html',{'cato':catego})
 
+def cat_edit(request):
+    if request.method == "POST":
+        id = request.GET.get('id')
+        cat_name = request.POST.get('cat_name')
+        cat_img = request.FILES['cat_img']
+        check = category.objects.filter(id=id).exists
+        if check == True:
+            category.objects.filter(id=id).update(cat_name=cat_name,category_img=cat_img)
+            return redirect(category_man)
+    else:
+        return redirect(category_man)
 def cat_delete(request):
     id = request.GET.get('id')
     category.objects.filter(id=id).delete()
@@ -152,6 +164,7 @@ def add_category(request):
     if request.method == 'POST':
         catego = category()
         catego.cat_name = request.POST['cat_name']
+        catego.category_img = request.FILES['cat_img']
         catego.save()
         messages.success(request,'Category add successfully')
         return redirect(category_man)
